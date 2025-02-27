@@ -15,3 +15,8 @@ Route::post('/logout', [UserController::class, 'logout']);
 Route::get('/add-movie-form', [MovieController::class, 'create']);
 Route::post('/add-movie-form', [MovieController::class, 'store']);
 Route::get('/single-movie/{movie:movie_slug}', [MovieController::class, 'showSingleMovie']);
+Route::get('/single-movie/{movie:movie_slug}/edit', [MovieController::class, 'show']);
+Route::put('/single-movie/{movie:movie_slug}', [MovieController::class, 'update']);
+Route::delete('/single-movie/{movie:movie_slug}/delete', [MovieController::class, 'destroy']);
+
+

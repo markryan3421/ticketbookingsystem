@@ -99,7 +99,7 @@
                     <!-- Duration -->
                     <td class="h-px w-10 whitespace-nowrap">
                       <div class="px-6 py-3">
-                        <span class="text-sm text-gray-500 dark:text-neutral-500">{{$movie->duration}}</span>
+                        <span class="text-sm text-gray-500 dark:text-neutral-500">{{$movie->duration}}hrs</span>
                       </div>
                     </td>
 

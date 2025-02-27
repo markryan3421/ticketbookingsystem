@@ -51,7 +51,7 @@ class MovieController extends Controller
      */
     public function show(Movie $movie)
     {
-        //
+        return view('edit-movie', compact('movie'));
     }
 
     /**
@@ -67,7 +67,19 @@ class MovieController extends Controller
      */
     public function update(Request $request, Movie $movie)
     {
-        //
+        $incomingFields = $request->validate([
+            'title' => 'required',
+            'duration' => 'required',
+            'price' => 'required',
+            'release_date' => 'required',
+        ]);
+
+        $incomingFields['movie_slug'] = Str::slug($incomingFields['title']);
+
+
+        $movie->update($incomingFields);
+
+        return redirect("/single-movie/{$movie->movie_slug}")->with('success', 'Movie successfully updated.');
     }
 
     /**
@@ -75,6 +87,7 @@ class MovieController extends Controller
      */
     public function destroy(Movie $movie)
     {
-        //
+        $movie->delete();
+        return redirect('/homepage')->with('success', 'Movie successfully deleted.');
     }
 }
