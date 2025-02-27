@@ -3,10 +3,14 @@
 namespace App\Http\Controllers;
 
 use App\Models\Movie;
+use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 
 class MovieController extends Controller
 {
+    public function showSingleMovie(Movie $movie) {
+        return view('single-movie', compact('movie'));
+    }
     /**
      * Display a listing of the resource.
      */
@@ -28,7 +32,18 @@ class MovieController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $incomingFields = $request->validate([
+            'title' => 'required',
+            'duration' => 'required',
+            'price' => 'required',
+            'release_date' => 'required',
+        ]);
+
+        $incomingFields['movie_slug'] = Str::slug($incomingFields['title']);
+
+        $newMovie = Movie::create($incomingFields);
+
+        return redirect("/single-movie/{$newMovie->movie_slug}");
     }
 
     /**

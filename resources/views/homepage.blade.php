@@ -16,23 +16,6 @@
                   Victorias City
                 </p>
               </div>
-
-              <div>
-                @can('is_admin')
-                  <!-- Add Book Category Button -->
-                  <a href="/add-book-category" class="py-2 px-3 inline-flex items-center gap-x-2 text-sm font-medium rounded-lg border border-transparent bg-green-600 text-white hover:bg-green-700 focus:outline-none focus:bg-green-700 disabled:opacity-50 disabled:pointer-events-none">
-                    <svg class="shrink-0 size-4" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="M12 5v14"/></svg>
-                    Add Book Category
-                  </a>
-
-                  <!-- View All Book Category -->
-                  <a class="py-2 px-3 inline-flex items-center gap-x-2 text-sm font-medium rounded-lg border border-transparent bg-green-600 text-white hover:bg-green-700 focus:outline-none focus:bg-green-700 disabled:opacity-50 disabled:pointer-events-none" href="/view-all-categories">
-                    <svg class="shrink-0 size-4" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="M12 5v14"/></svg>
-                    View All Book Categories
-                  </a>
-
-                  @endcan
-                </div>
               </div>
             </div>
             <!-- End Header -->
@@ -92,11 +75,12 @@
 
               <!-- Body -->
               <tbody class="divide-y divide-gray-200 dark:divide-neutral-700">
+                @foreach($movies as $movie)
                 <tr>
                     <!-- ID Data -->
                     <td class="size-px whitespace-nowrap">
                       <div class="ps-6 py-3">
-                        <span class="text-sm text-gray-500 dark:text-neutral-500"></span>
+                        <span class="text-sm text-gray-500 dark:text-neutral-500">{{$movie->id}}</span>
                       </div>
                     </td>
 
@@ -104,9 +88,9 @@
                     <td class="size-px whitespace-nowrap">
                       <div class="ps-6 lg:ps-3 xl:ps-0 pe-6 py-3">
                         <div class="flex items-center gap-x-3">
-                          <img class="inline-block size-[38px] rounded-full" src="#" alt="Book Cover"> 
+                          <!-- <img class="inline-block size-[38px] rounded-full" src="#" alt="Book Cover">  -->
                           <div class="grow">
-                            <span class="block text-sm font-semibold text-gray-800 dark:text-neutral-200"></span> 
+                            <span class="block text-sm font-semibold text-gray-800 dark:text-neutral-200">{{$movie->title}}</span> 
                           </div>
                         </div>
                       </div>
@@ -115,36 +99,35 @@
                     <!-- Duration -->
                     <td class="h-px w-10 whitespace-nowrap">
                       <div class="px-6 py-3">
-                        <span class="text-sm text-gray-500 dark:text-neutral-500"></span>
+                        <span class="text-sm text-gray-500 dark:text-neutral-500">{{$movie->duration}}</span>
                       </div>
                     </td>
 
                     <!-- Price -->
                     <td class="size-px whitespace-nowrap">
                       <div class="px-6 py-3">
-                        <span class="text-sm text-gray-500 dark:text-neutral-500"></span>
+                        <span class="text-sm text-gray-500 dark:text-neutral-500">{{$movie->price}}</span>
                       </div>
                     </td>
 
                     <!-- Release Date -->
                     <td class="size-px whitespace-nowrap">
                       <div class="px-6 py-3">
-                        <span class="text-xs text-gray-500 dark:text-neutral-500"></span>
+                        <span class="text-xs text-gray-500 dark:text-neutral-500">{{$movie->release_date}}</span>
                       </div>
                     </td>
 
                     <!-- View Button -->
                     <td class="size-px whitespace-nowrap">
                       <div class="px-6 py-1.5">
-                        <a href="#" class="py-2 px-3 inline-flex items-center gap-x-2 text-sm font-medium rounded-lg border border-transparent bg-green-600 text-white hover:bg-green-700 focus:outline-none focus:bg-green-700 disabled:opacity-50 disabled:pointer-events-none">
+                        <a href="/single-movie/{{$movie->movie_slug}}" class="py-2 px-3 inline-flex items-center gap-x-2 text-sm font-medium rounded-lg border border-transparent bg-green-600 text-white hover:bg-green-700 focus:outline-none focus:bg-green-700 disabled:opacity-50 disabled:pointer-events-none">
                           View
                         </a>
                       </div>
                     </td>
                   </tr>
+                @endforeach
               </tbody>
-
-
             </table>
             <!-- End Table -->
           </div>
